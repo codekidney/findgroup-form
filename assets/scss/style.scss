@@ -1,0 +1,100 @@
+@import "reset.scss";
+@import "media-queries.scss";
+@import "mixins.scss";
+
+/* global */
+$gutter: 15px;
+$lightGrey: #dedede;
+$fontPrimary: sans-serif;
+$colorPrimary: #4CAF50;
+
+
+/* Colors */
+$white: #fff;
+$black: #000;
+
+textarea,
+input[type=text],
+input[type=url] {
+    padding: $gutter/2;
+    border: 1px solid $lightGrey;
+    font-family: $fontPrimary;
+    min-width: 240px;
+}
+textarea {
+    min-height: 90px;
+}
+
+.btn {
+    &-primary {
+        background: $colorPrimary;
+        padding: $gutter 2*$gutter;
+        color: $white;
+        border: none;
+        cursor: pointer;
+        @include transition();
+        @include border-radius($gutter);
+        &:hover {
+            background-color: darken($colorPrimary,10%);
+        }
+    }
+}
+
+.window-centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
+}
+.avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    img {
+        display: block;
+    }
+}
+.popup {
+    display: none;
+    z-index: 1101;
+    background-color: $white;
+    padding: 2*$gutter;
+    overflow: hidden;
+    @include transition();
+    &-close-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        width: 2*$gutter;
+        height: 2*$gutter;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $black;
+        color: $white;
+    }
+    &-overlay {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        z-index: 1100;
+        background-color: $black;
+        opacity: 0.7;
+        cursor: pointer;
+        @include transition();
+    }
+    input[type=submit]{
+        margin-top: $gutter/2;
+    }
+    p {
+        margin-bottom: $gutter/2;
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+}
