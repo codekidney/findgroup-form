@@ -99,9 +99,9 @@ function getUser(url, callback) {
             const json = JSON.parse(httpReq.responseText);
             const userObj = new User(json.user_name, json.user_surname, json.user_description, json.user_site_url, json.user_avatar_url);
 
+            httpReq = null;
             callback( userObj );
             return userObj;
-            httpReq = null;
         }
     };
     httpReq.send();
@@ -143,11 +143,7 @@ function initForm(settings){
             },
             body: JSON.stringify({
                 user_site_url: newUser.site_url
-            })
-//        })
-//        .then(handleErrors)
-//        .then(response => console.log("ok"))
-//        .catch(error => console.log(error));            
+            })          
         }).then(function(response){
              return response.json()
         });
@@ -157,9 +153,12 @@ function initForm(settings){
             combinedUserSaveResponse["userSaveData"] = values[0];
             combinedUserSaveResponse["userSaveUrl"] = values[1];
             
+            // Clear form
+            form.reset();
+            
             // Result
-            console.log(combinedUserSaveResponse);
             popup.hide();
+            
         });
         
     });
